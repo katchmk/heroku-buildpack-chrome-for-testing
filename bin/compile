@@ -55,7 +55,7 @@ else
 fi
 # The current version endpoint requires ALL CAPS.
 CHANNEL="$(echo -n "$channel" | awk '{ print toupper($0) }')"
-VERSION="$(curl --silent --show-error --fail --retry 3 --retry-connrefused --connect-timeout 10 "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_$CHANNEL")"
+VERSION="${CHROME_VERSION:(curl --silent --show-error --fail --retry 3 --retry-connrefused --connect-timeout 10 "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_$CHANNEL")}"
 echo "Resolved $CHANNEL version $VERSION" | indent
 
 echo "Downloading Chrome" | indent
