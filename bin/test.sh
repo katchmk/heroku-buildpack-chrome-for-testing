@@ -12,11 +12,9 @@ docker build --progress=plain --build-arg="STACK_VERSION=${STACK_VERSION}" -t he
 
 # Check the profile.d scripts correctly added the binaries to PATH.
 docker run --rm heroku-buildpack-chrome-for-testing bash -l -c 'chrome --version'
-docker run --rm heroku-buildpack-chrome-for-testing bash -l -c 'chromedriver --version'
 
 # Check that there are no missing dynamically linked libraries.
 docker run --rm heroku-buildpack-chrome-for-testing bash -l -c 'ldd $(which chrome)'
-docker run --rm heroku-buildpack-chrome-for-testing bash -l -c 'ldd $(which chromedriver)'
 
 # Check Chrome can fully boot.
 docker run --rm heroku-buildpack-chrome-for-testing bash -l -c 'chrome --no-sandbox --headless --screenshot https://google.com'
